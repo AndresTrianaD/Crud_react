@@ -7,11 +7,22 @@ function App() {
   const [tasks, setTasks]= useState([])
   const [editMode, setEditMode]= useState(false)
   const [id, setId] = useState("")
+  const [error, setError]= useState(null)
+
+  const validForm =(e)=>{
+    let isValid = true
+    setError(null)
+    if (isEmpty(task)){
+      setError("Ingresar dato")
+      isValid =false
+
+    }
+    return isValid
+  }
 
   const addTask = (e) => {
     e.preventDefault()
-    if (isEmpty(task)){
-      console.log("Task empty")
+    if (!validForm()){
       return
     }
     
@@ -62,7 +73,7 @@ function App() {
        {
         //operador unitario
         size(tasks) == 0?(
-          <h5 className= "text-center">Aun no hay tareas.</h5>
+          <h5 className= "list-group-item">Aun no hay tareas.</h5>
         ):(
 
         <ul className="list-group">
@@ -96,6 +107,9 @@ function App() {
      <div className="col-4">
         <h4 className="text-center">{editMode? "Modificar tarea" : "Agreagar Tarea"}</h4>
         <form onSubmit={editMode ? saveTask : addTask}>
+        {
+          error && <span className="text-danger">{error}</span>
+        }
          <input 
            type="text"
            className="form-control mb-2"
@@ -104,6 +118,7 @@ function App() {
             value = {task}
 
          />
+         
          <button 
            className={editMode ? "btn btn-warning btn-block" : "btn btn-dark btn-block"}
            type="submit"
