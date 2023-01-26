@@ -1,4 +1,4 @@
-import { isEmpty, set, size} from 'lodash'
+import { isEmpty, size} from 'lodash'
 import React, {useState, useEffect} from 'react'
 import { addDocument, deleteDocument, getCollection, updateDocument } from './actions'
 
@@ -88,7 +88,7 @@ useEffect(() =>{
 
   return (
     <div className="container mt-5">
-     <h1>Tareas</h1>
+     <h1>Elpez27</h1>
      <hr/>
      <div className="row"> 
      <div className="col-8">
